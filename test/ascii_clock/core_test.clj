@@ -28,3 +28,13 @@
     (map-minute 10) => 2
     (map-minute 17) => 3
     (map-minute 45) => 9))
+
+(facts "about format clock"
+  (fact "it should show the hours and minutes correctly"
+    (format-clock {:hours 3 :minutes 50}) => ["   o   "
+                                              "  o o  "
+                                              " o   o "
+                                              "m     h"
+                                              " o   o "
+                                              "  o o  "
+                                              "   o   "]))

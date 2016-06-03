@@ -15,3 +15,12 @@
 
 (defn map-minute [minutes]
   (/ (round-minutes minutes) 5))
+
+(defn format-clock [{hours :hours minutes :minutes}]
+  ["   o   "
+    "  o o  "
+    " o   o "
+    "m     h"
+    " o   o "
+    "  o o  "
+    "   o   "])
