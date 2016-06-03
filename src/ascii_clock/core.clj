@@ -18,13 +18,13 @@
   (/ (round-minutes minutes) 5))
 
 (defn format-clock [{hours :hours minutes :minutes}]
-  ["   o   "
-    "  o o  "
-    " o   o "
-    "m     h"
-    " o   o "
-    "  o o  "
-    "   o   "])
+  ["    o    "
+    "  o   o  "
+    " o     o "
+    "m       h"
+    " o     o "
+    "  o   o  "
+    "    o    "])
 
 (defn -main []
   (dorun (map println (format-clock {:hours 12 :minutes 19}))))
