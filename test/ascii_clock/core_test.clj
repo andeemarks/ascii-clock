@@ -29,6 +29,22 @@
     (map-minute 17) => 3
     (map-minute 45) => 9))
 
+(facts "about hand location"
+  (fact "each hour should map to a row and position within row"
+    (hand-location 1) => {:row 2 :position 2}
+    (hand-location 2) => {:row 3 :position 2}
+    (hand-location 3) => {:row 4 :position 2}
+    (hand-location 4) => {:row 5 :position 2}
+    (hand-location 5) => {:row 6 :position 2}
+    (hand-location 6) => {:row 7 :position 1}
+    (hand-location 7) => {:row 6 :position 1}
+    (hand-location 8) => {:row 5 :position 1}
+    (hand-location 9) => {:row 4 :position 1}
+    (hand-location 10) => {:row 3 :position 1}
+    (hand-location 11) => {:row 2 :position 1}
+    (hand-location 12) => {:row 1 :position 1}
+    ))
+
 (facts "about format clock"
   (fact "it should show the hours and minutes correctly"
     (format-clock {:hours 3 :minutes 50}) => ["    o    "

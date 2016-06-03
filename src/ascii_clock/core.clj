@@ -17,8 +17,11 @@
 (defn map-minute [minutes]
   (/ (round-minutes minutes) 5))
 
+(defn hand-location [hour]
+  {:row (if (<= hour 6) (+ 1 hour) (- 13 hour)) :position (if (< hour 6) 2 1)})
+
 (defn format-clock [{hours :hours minutes :minutes}]
-  ["    o    "
+  [ "    o    "
     "  o   o  "
     " o     o "
     "m       h"
