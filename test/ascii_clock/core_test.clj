@@ -5,11 +5,13 @@
 (facts "about time parsing"
   (fact "it should identify a valid hour"
     (:hours (parse-time "21:35")) => 21
-    (:hours (parse-time "04:35")) => 4
+    (:hours (parse-time "04:35")) => 4)
+  (future-fact "it should refuse invalid hours"
     (:hours (parse-time "24:35")) => nil)
   (fact "it should identify the minutes"
     (:minutes (parse-time "21:35")) => 35
-    (:minutes (parse-time "21:05")) => 5
+    (:minutes (parse-time "21:05")) => 5)
+  (future-fact "it should refuse invalid minutes"
     (:minutes (parse-time "21:65")) => nil)
   )
 
