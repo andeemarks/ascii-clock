@@ -1,4 +1,5 @@
-(ns ascii-clock.core)
+(ns ascii-clock.core
+  (:gen-class))
 
 ;;; This is an incorrect implementation, such as might be written by
 ;;; someone who was used to a Lisp in which an empty list is equal to
@@ -24,3 +25,6 @@
     " o   o "
     "  o o  "
     "   o   "])
+
+(defn -main []
+  (dorun (map println (format-clock {:hours 12 :minutes 19}))))
