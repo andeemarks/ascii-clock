@@ -27,7 +27,7 @@
 (defn map-minute [minutes]
   (/ (round-minutes minutes) 5))
 
-(defn hand-location [hour]
+(defn hour-to-location [hour]
   { :row (if (<= hour 6) (+ 1 hour) (- 13 hour))
     :position (if (< hour 6) 2 1)})
 
