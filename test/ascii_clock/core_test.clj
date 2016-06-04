@@ -15,19 +15,16 @@
     (:minutes (parse-time "21:65")) => nil)
   )
 
-(facts "about minute rounding"
-  (fact "it should round down to the nearest 5 minutes"
-    (round-minutes 1) => 0
-    (round-minutes 46) => 45
-    (round-minutes 35) => 35))
-
 (facts "about minute mapping"
   (fact "it should map minutes to clock face positions"
     (map-minute 0) => 0
+    (map-minute 1) => 0
     (map-minute 5) => 1
     (map-minute 10) => 2
     (map-minute 17) => 3
-    (map-minute 45) => 9))
+    (map-minute 45) => 9
+    (map-minute 49) => 9
+    (map-minute 46) => 9))
 
 (facts "about mapping segments to hand locations"
   (fact "each segment should map to a row and position within row"

@@ -17,9 +17,6 @@
         minutes (Integer/parseInt (re-find matcher))]
         {:hours hours :minutes minutes}))
 
-(defn round-minutes [minutes]
-  (- minutes (mod minutes 5)))
-
 (defn map-minute [minutes]
   (/ (round-minutes minutes) 5))
 
@@ -42,7 +39,7 @@
   (update-clock-for-segment clock coords "h"))
 
 (defn format-clock [{hours :hours minutes :minutes}]
-  (let [minute-update-coords (segment-to-location (map-minute (round-minutes minutes)))
+  (let [minute-update-coords (segment-to-location (map-minute minutes))
         hour-update-coords (segment-to-location hours)]
         (if (= minute-update-coords hour-update-coords)
           (update-clock-for-segment raw-clock minute-update-coords "x")
