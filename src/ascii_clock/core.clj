@@ -23,10 +23,10 @@
   { :row (if (<= segment 6) (+ 1 segment) (- 13 segment))
     :position (if (< segment 6) 2 1)})
 
-(defn update-row [row position token]
+(defn update-row [row position segment]
   (if (= position 1)
-    (clojure.string/replace-first row #"o" token)
-    (clojure.string/reverse (clojure.string/replace-first row #"o" token))))
+    (clojure.string/replace-first row #"o" segment)
+    (clojure.string/reverse (clojure.string/replace-first row #"o" segment))))
 
 (defn- update-clock-for-segment [clock {row :row position :position} segment]
   (update-in clock [(- row 1)] update-row position segment))
