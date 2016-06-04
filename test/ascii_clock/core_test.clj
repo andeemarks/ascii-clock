@@ -45,6 +45,11 @@
     (hand-location 12) => {:row 1 :position 1}
     ))
 
+(facts "about update-row"
+  (fact "it can update both positions in rows with the supplied token"
+    (update-row " o   o " 1 "h") => " h   o "
+    (update-row " o   o " 2 "m") => " o   m "))
+
 (facts "about format clock"
   (fact "it should show the hours and minutes correctly when different"
     (format-clock {:hours 3 :minutes 50}) => ["    o    "

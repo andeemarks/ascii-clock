@@ -1,5 +1,6 @@
 (ns ascii-clock.core
-  (:gen-class))
+  (:gen-class)
+  (use [clojure.string :only [replace-first reverse]]))
 
 ;;; This is an incorrect implementation, such as might be written by
 ;;; someone who was used to a Lisp in which an empty list is equal to
@@ -18,7 +19,13 @@
   (/ (round-minutes minutes) 5))
 
 (defn hand-location [hour]
-  {:row (if (<= hour 6) (+ 1 hour) (- 13 hour)) :position (if (< hour 6) 2 1)})
+  { :row (if (<= hour 6) (+ 1 hour) (- 13 hour)) 
+    :position (if (< hour 6) 2 1)})
+
+(defn update-row [row position token]
+  (if (= position 1)
+    (replace-first row #"o" marker)
+    (reverse (replace-first row #"o" marker))))
 
 (defn format-clock [{hours :hours minutes :minutes}]
   [ "    o    "
