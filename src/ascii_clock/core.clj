@@ -1,6 +1,5 @@
 (ns ascii-clock.core
-  (:gen-class)
-  (use [clojure.string :only [replace-first]]))
+  (:gen-class))
 
 (def raw-clock
 [ "    o    "
