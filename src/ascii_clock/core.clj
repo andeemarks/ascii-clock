@@ -23,7 +23,7 @@
   (/ (round-minutes minutes) 5))
 
 (defn segment-to-coords [segment]
-  { :row (if (<= segment 6) (+ 1 segment) (- 13 segment))
+  { :row (if (<= segment 6) segment (- 12 segment))
     :position (if (< segment 6) 2 1)})
 
 (defn update-row [row position segment]
@@ -32,7 +32,7 @@
     (clojure.string/reverse (clojure.string/replace-first row #"o" segment))))
 
 (defn- update-clock-for-segment [clock {row :row position :position} segment]
-  (update-in clock [(- row 1)] update-row position segment))
+  (update-in clock [row] update-row position segment))
 
 (defn format-clock [{hours :hours minutes :minutes}]
   (let [minute-hand-coords (segment-to-coords (map-minute minutes))
