@@ -31,19 +31,13 @@
 (defn- update-clock-for-segment [clock {row :row position :position} segment]
   (update-in clock [(- row 1)] update-row position segment))
 
-(defn update-clock-for-minutes [clock coords]
-  (update-clock-for-segment clock coords "m"))
-
-(defn update-clock-for-hours [clock coords]
-  (update-clock-for-segment clock coords "h"))
-
 (defn format-clock [{hours :hours minutes :minutes}]
   (let [minute-hand-coords (segment-to-coords (map-minute minutes))
         hour-hand-coords (segment-to-coords hours)]
         (if (= minute-hand-coords hour-hand-coords)
           (update-clock-for-segment raw-clock minute-hand-coords "x")
-          (update-clock-for-minutes
-            (update-clock-for-hours raw-clock hour-hand-coords) minute-hand-coords))))
+          (update-clock-for-segment
+            (update-clock-for-segment raw-clock hour-hand-coords "h") minute-hand-coords "m"))))
 
 (defn -main [& args]
   (let [time-spec (first args)]
