@@ -6,6 +6,15 @@
 ;;; someone who was used to a Lisp in which an empty list is equal to
 ;;; nil.
 
+(def raw-clock
+[ "    o    "
+  "  o   o  "
+  " o     o "
+  "m       h"
+  " o     o "
+  "  o   o  "
+  "    o    "])
+
 (defn parse-time [time]
   (def matcher (re-matcher #"\d+" time))
   (let [hours (Integer/parseInt (re-find matcher))
@@ -19,22 +28,16 @@
   (/ (round-minutes minutes) 5))
 
 (defn hand-location [hour]
-  { :row (if (<= hour 6) (+ 1 hour) (- 13 hour)) 
+  { :row (if (<= hour 6) (+ 1 hour) (- 13 hour))
     :position (if (< hour 6) 2 1)})
 
 (defn update-row [row position token]
   (if (= position 1)
-    (replace-first row #"o" marker)
-    (reverse (replace-first row #"o" marker))))
+    (replace-first row #"o" token)
+    (clojure.string/reverse (replace-first row #"o" token))))
 
 (defn format-clock [{hours :hours minutes :minutes}]
-  [ "    o    "
-    "  o   o  "
-    " o     o "
-    "m       h"
-    " o     o "
-    "  o   o  "
-    "    o    "])
+  raw-clock)
 
-(defn -main []
+(defn -main [& args]
   (dorun (map println (format-clock {:hours 12 :minutes 19}))))
