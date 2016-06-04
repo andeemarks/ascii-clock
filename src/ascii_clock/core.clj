@@ -16,6 +16,9 @@
         minutes (Integer/parseInt (re-find matcher))]
         {:hours hours :minutes minutes}))
 
+(defn- round-minutes [minutes]
+  (- minutes (mod minutes 5)))
+
 (defn map-minute [minutes]
   (/ (round-minutes minutes) 5))
 
