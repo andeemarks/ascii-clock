@@ -46,11 +46,19 @@
     ))
 
 (facts "about format clock"
-  (fact "it should show the hours and minutes correctly"
+  (fact "it should show the hours and minutes correctly when different"
     (format-clock {:hours 3 :minutes 50}) => ["    o    "
                                               "  o   o  "
+                                              " m     o "
+                                              "o       h"
                                               " o     o "
-                                              "m       h"
+                                              "  o   o  "
+                                              "    o    "])
+  (fact "it should show the hours and minutes correctly when same"
+    (format-clock {:hours 3 :minutes 15}) => ["    o    "
+                                              "  o   o  "
+                                              " o     o "
+                                              "o       x"
                                               " o     o "
                                               "  o   o  "
                                               "    o    "]))
