@@ -29,20 +29,20 @@
     (map-minute 17) => 3
     (map-minute 45) => 9))
 
-(facts "about hand location"
-  (fact "each hour should map to a row and position within row"
-    (hour-to-location 1) => {:row 2 :position 2}
-    (hour-to-location 2) => {:row 3 :position 2}
-    (hour-to-location 3) => {:row 4 :position 2}
-    (hour-to-location 4) => {:row 5 :position 2}
-    (hour-to-location 5) => {:row 6 :position 2}
-    (hour-to-location 6) => {:row 7 :position 1}
-    (hour-to-location 7) => {:row 6 :position 1}
-    (hour-to-location 8) => {:row 5 :position 1}
-    (hour-to-location 9) => {:row 4 :position 1}
-    (hour-to-location 10) => {:row 3 :position 1}
-    (hour-to-location 11) => {:row 2 :position 1}
-    (hour-to-location 12) => {:row 1 :position 1}
+(facts "about mapping segments to hand locations"
+  (fact "each segment should map to a row and position within row"
+    (segment-to-location 1) => {:row 2 :position 2}
+    (segment-to-location 2) => {:row 3 :position 2}
+    (segment-to-location 3) => {:row 4 :position 2}
+    (segment-to-location 4) => {:row 5 :position 2}
+    (segment-to-location 5) => {:row 6 :position 2}
+    (segment-to-location 6) => {:row 7 :position 1}
+    (segment-to-location 7) => {:row 6 :position 1}
+    (segment-to-location 8) => {:row 5 :position 1}
+    (segment-to-location 9) => {:row 4 :position 1}
+    (segment-to-location 10) => {:row 3 :position 1}
+    (segment-to-location 11) => {:row 2 :position 1}
+    (segment-to-location 12) => {:row 1 :position 1}
     ))
 
 (facts "about update-row"
