@@ -1,6 +1,6 @@
 (ns ascii-clock.core
   (:gen-class)
-  (use [clojure.string :only [replace-first reverse]]))
+  (use [clojure.string :only [replace-first]]))
 
 ;;; This is an incorrect implementation, such as might be written by
 ;;; someone who was used to a Lisp in which an empty list is equal to
@@ -10,7 +10,7 @@
 [ "    o    "
   "  o   o  "
   " o     o "
-  "m       h"
+  "o       o"
   " o     o "
   "  o   o  "
   "    o    "])
@@ -36,8 +36,17 @@
     (replace-first row #"o" token)
     (clojure.string/reverse (replace-first row #"o" token))))
 
+(defn update-clock-for-minutes [clock {row :row position :position}]
+  (update-in clock [(- row 1)] update-row position "m"))
+
+(defn update-clock-for-hours [clock {row :row position :position}]
+  (update-in clock [(- row 1)] update-row position "h"))
+
 (defn format-clock [{hours :hours minutes :minutes}]
-  raw-clock)
+  (let [minute-update-coords (hour-to-location (map-minute (round-minutes minutes)))
+        hour-update-coords (hour-to-location hours)]
+        (update-clock-for-minutes
+          (update-clock-for-hours raw-clock hour-update-coords) minute-update-coords)))
 
 (defn -main [& args]
   (dorun (map println (format-clock {:hours 12 :minutes 19}))))
