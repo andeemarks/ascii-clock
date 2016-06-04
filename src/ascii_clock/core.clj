@@ -19,7 +19,7 @@
 (defn map-minute [minutes]
   (/ (round-minutes minutes) 5))
 
-(defn segment-to-location [segment]
+(defn segment-to-coords [segment]
   { :row (if (<= segment 6) (+ 1 segment) (- 13 segment))
     :position (if (< segment 6) 2 1)})
 
@@ -38,8 +38,8 @@
   (update-clock-for-segment clock coords "h"))
 
 (defn format-clock [{hours :hours minutes :minutes}]
-  (let [minute-hand-coords (segment-to-location (map-minute minutes))
-        hour-hand-coords (segment-to-location hours)]
+  (let [minute-hand-coords (segment-to-coords (map-minute minutes))
+        hour-hand-coords (segment-to-coords hours)]
         (if (= minute-hand-coords hour-hand-coords)
           (update-clock-for-segment raw-clock minute-hand-coords "x")
           (update-clock-for-minutes
