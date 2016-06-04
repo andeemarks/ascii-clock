@@ -28,7 +28,7 @@
     (clojure.string/replace-first row #"o" token)
     (clojure.string/reverse (clojure.string/replace-first row #"o" token))))
 
-(defn update-clock-for-segment [clock {row :row position :position} segment]
+(defn- update-clock-for-segment [clock {row :row position :position} segment]
   (update-in clock [(- row 1)] update-row position segment))
 
 (defn update-clock-for-minutes [clock coords]
@@ -38,12 +38,12 @@
   (update-clock-for-segment clock coords "h"))
 
 (defn format-clock [{hours :hours minutes :minutes}]
-  (let [minute-update-coords (segment-to-location (map-minute minutes))
-        hour-update-coords (segment-to-location hours)]
-        (if (= minute-update-coords hour-update-coords)
-          (update-clock-for-segment raw-clock minute-update-coords "x")
+  (let [minute-hand-coords (segment-to-location (map-minute minutes))
+        hour-hand-coords (segment-to-location hours)]
+        (if (= minute-hand-coords hour-hand-coords)
+          (update-clock-for-segment raw-clock minute-hand-coords "x")
           (update-clock-for-minutes
-            (update-clock-for-hours raw-clock hour-update-coords) minute-update-coords))))
+            (update-clock-for-hours raw-clock hour-hand-coords) minute-hand-coords))))
 
 (defn -main [& args]
   (let [time-spec (first args)]
